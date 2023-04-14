@@ -8,11 +8,11 @@ export default function Navbar() {
         <nav>
             <img src="/vercel.svg" />
             <div>
-                <Link href="/" className={router.pathname === "/" ? "active" : ""}>
-                    Home
+                <Link href="/" style={{ textDecoration: "none" }}>
+                    <div className={router.pathname === "/" ? "active item" : "item"}>Home</div>
                 </Link>
-                <Link href="/about" className={router.pathname === "/about" ? "active" : ""}>
-                    About
+                <Link href="/about" style={{ textDecoration: "none" }}>
+                    <div className={router.pathname === "/about" ? "active item" : "item"}>About</div>
                 </Link>
             </div>
             <style jsx>{`
@@ -29,9 +29,10 @@ export default function Navbar() {
                     max-width: 100px;
                     margin-bottom: 5px;
                 }
-                nav a {
+                .item {
                     font-weight: 600;
                     font-size: 18px;
+                    color: black;
                 }
                 .active {
                     color: tomato;
