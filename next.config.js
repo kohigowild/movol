@@ -31,6 +31,10 @@ const nextConfig = {
                 source: "/api/search/:keyword",
                 destination: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=:keyword&language=ko-KR`,
             },
+            {
+                source: "/api/list/:num",
+                destination: `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=ko-KR&page=:num`,
+            },
         ];
     },
 };

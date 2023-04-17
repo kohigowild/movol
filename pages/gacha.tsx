@@ -1,7 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
 import Seo from "@/components/@common/Seo";
 
-export default function About() {
+export default function Gacha() {
+    const router = useRouter();
+    const handleItemClick = (id: number, title: string) => {
+        router.push({
+            pathname: `/movies/${title}/${id}`,
+        });
+    };
+
+    const [result, setResult] = useState<any>([]);
+    const getRandom = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min);
+    const fetchGachaMovie = async () => {
+        const num = getRandom(1, 300);
+        const gachaMovie = await (await fetch(`https://movol.vercel.app/api/list/${num}`)).json();
+        setResult(gachaMovie.results);
+        console.log(result);
+    };
+
+    useEffect(() => {
+        fetchGachaMovie();
+    }, []);
+
     return (
         <div>
             <Seo title="About" />

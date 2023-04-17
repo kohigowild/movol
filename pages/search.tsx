@@ -16,7 +16,7 @@ export default function search() {
     const [info, setInfo] = useState<TypeMovieList[]>([]);
 
     const fetchSearchingResult = async () => {
-        const fetchingResult = await (await fetch(`http://localhost:3000/api/search/${keyword}}`)).json();
+        const fetchingResult = await (await fetch(`https://movol.vercel.app/api/search/${keyword}}`)).json();
         setInfo(fetchingResult.results);
     };
 

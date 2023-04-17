@@ -18,13 +18,13 @@ export default function Home({ results }: TypeResult) {
             <div className="mx-auto max-w-2xl pt-20 pl-4 pr-4">
                 <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                     오늘 movol지 고민된다면?
-                    <a href="/" className="font-semibold text-indigo-600 ml-2">
+                    <a href="/" className="font-semibold text-indigo-400 ml-2">
                         <span className="absolute inset-0" aria-hidden="true" />
                         Read more <span aria-hidden="true">&rarr;</span>
                     </a>
                 </div>
             </div>
-            <div className="text-2xl text-center font-semibold mt-16 text-indigo-600">실시간 TOP 20</div>
+            <div className="text-3xl text-center font-bold mt-16 text-indigo-400">실시간 TOP 20</div>
             <div className="container mx-auto flex flex-wrap items-start py-16">
                 {results?.map((movie: any) => (
                     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 pl-4 pr-4 mb-4 cursor-pointer" key={movie.id} onClick={() => handleItemClick(movie.id, movie.original_title)}>

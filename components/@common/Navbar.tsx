@@ -10,8 +10,8 @@ export default function Navbar() {
 
     const navigation = [
         { name: "Home", href: "/" },
-        { name: "Gacha", href: "/gacha" },
         { name: "Search", href: "/search" },
+        { name: "Gacha", href: "/gacha" },
     ];
 
     return (
