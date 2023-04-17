@@ -45,7 +45,7 @@ export default function Home({ results }: any) {
 }
 
 export async function getServerSideProps() {
-    const { results } = await (await fetch(`http://localhost:3000/api/movies`)).json();
+    const { results } = await (await fetch(`https://movol.vercel.app/api/movies`)).json();
     return {
         props: {
             results,
