@@ -1,4 +1,4 @@
-import Seo from "@/components/Seo";
+import Seo from "@/components/@common/Seo";
 import { useRouter } from "next/router";
 import React from "react";
 
