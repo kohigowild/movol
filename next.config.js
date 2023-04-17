@@ -27,6 +27,14 @@ const nextConfig = {
                 source: "/api/similar/:id",
                 destination: `https://api.themoviedb.org/3/movie/:id/similar?api_key=${API_KEY}&language=ko-KR`,
             },
+            {
+                source: "/api/search/:keyword",
+                destination: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=:keyword&language=ko-KR`,
+            },
+            {
+                source: "/api/list/:num",
+                destination: `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=ko-KR&page=:num`,
+            },
         ];
     },
 };

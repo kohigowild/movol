@@ -15,7 +15,6 @@ export default function Review({ id }: TypeId) {
     const fetchMovieReviews = async () => {
         const fetchingReview = await (await fetch(`https://movol.vercel.app/api/reviews/${id}}`)).json();
         setReviews(fetchingReview.results);
-        console.log(fetchingReview);
     };
 
     const Rating = ({ num }: { num: number }) => {

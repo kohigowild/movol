@@ -1,10 +1,10 @@
-import React from "react";
-import Image from "next/image";
+import React, { useState } from "react";
 import Seo from "@/components/@common/Seo";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import { TypeResult } from "@/interface/movie";
+import { TypeMovieList } from "@/interface/movie";
 
-export default function Home({ results }: TypeResult) {
+export default function search() {
     const router = useRouter();
     const handleItemClick = (id: number, title: string) => {
         router.push({
@@ -12,21 +12,35 @@ export default function Home({ results }: TypeResult) {
         });
     };
 
+    const [keyword, setKeyword] = useState<string>("");
+    const [info, setInfo] = useState<TypeMovieList[]>([]);
+
+    const fetchSearchingResult = async () => {
+        const fetchingResult = await (await fetch(`https://movol.vercel.app/api/search/${keyword}}`)).json();
+        setInfo(fetchingResult.results);
+    };
+
     return (
         <div>
-            <Seo title="Home" />
-            <div className="mx-auto max-w-2xl pt-20 pl-4 pr-4">
-                <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                    오늘 movol지 고민된다면?
-                    <a href="/" className="font-semibold text-indigo-400 ml-2">
-                        <span className="absolute inset-0" aria-hidden="true" />
-                        Read more <span aria-hidden="true">&rarr;</span>
-                    </a>
+            <Seo title="Search" />
+            <div className="mx-auto max-w-2xl py-32">
+                <div className="text-center">
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl">Movie Finder</h1>
+                    <div className="mt-10 flex items-center justify-center gap-x-6 relative">
+                        <input
+                            type="text"
+                            className="relative w-4/5 outline-none rounded-lg py-3 px-4 bg-white shadow text-base text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline"
+                            placeholder="찾고 싶은 영화를 검색해 보세요."
+                            onChange={(e) => setKeyword(e.target.value)}
+                        />
+                        <button className="rounded-lg bg-indigo-400 text-white w-1/6 py-3 shadow hover:bg-indigo-500 duration-300" onClick={fetchSearchingResult}>
+                            검색
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div className="text-3xl text-center font-bold mt-16 text-indigo-400">실시간 TOP 20</div>
-            <div className="container mx-auto flex flex-wrap items-start py-16">
-                {results?.map((movie: any) => (
+            <div className="container mx-auto flex flex-wrap items-start">
+                {info?.map((movie: any) => (
                     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 pl-4 pr-4 mb-4 cursor-pointer" key={movie.id} onClick={() => handleItemClick(movie.id, movie.original_title)}>
                         <div className="rounded-lg m-h-64 p-2 transform hover:-translate-y-2 hover:shadow-2xl transition duration-300">
                             <figure className="relative h-[300px]">
@@ -47,13 +61,4 @@ export default function Home({ results }: TypeResult) {
             </div>
         </div>
     );
-}
-
-export async function getServerSideProps() {
-    const { results } = await (await fetch(`https://movol.vercel.app/api/movies`)).json();
-    return {
-        props: {
-            results,
-        },
-    };
 }
