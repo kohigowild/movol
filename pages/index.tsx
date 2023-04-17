@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Seo from "@/components/@common/Seo";
 import { useRouter } from "next/router";
@@ -23,8 +23,8 @@ export default function Home({ results }: TypeResult) {
                         Read more <span aria-hidden="true">&rarr;</span>
                     </a>
                 </div>
-                <div>실시간 TOP 20</div>
             </div>
+            <div className="text-2xl text-center font-semibold mt-16 text-indigo-600">실시간 TOP 20</div>
             <div className="container mx-auto flex flex-wrap items-start py-16">
                 {results?.map((movie: any) => (
                     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 pl-4 pr-4 mb-4 cursor-pointer" key={movie.id} onClick={() => handleItemClick(movie.id, movie.original_title)}>
