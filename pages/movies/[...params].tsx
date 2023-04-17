@@ -27,7 +27,7 @@ export default function Detail({ params }: any) {
 
     useEffect(() => {
         fetchMovieDetails();
-    }, []);
+    }, [id]);
 
     return (
         <div>
