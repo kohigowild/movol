@@ -18,3 +18,22 @@ export interface TypeMovieList {
 export interface TypeResult {
     results: TypeMovieList[];
 }
+
+export interface TypeId {
+    id: number;
+}
+
+export interface TypeReview {
+    author: string;
+    author_details: {
+        avatar_path: string;
+        name: string;
+        rating: number;
+        username: string;
+    };
+    content: string;
+    created_at: string;
+    id: string;
+    updated_at: string;
+    url: string;
+}

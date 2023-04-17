@@ -3,7 +3,7 @@ const API_KEY = process.env.API_KEY;
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        domains: ["image.tmdb.org"],
+        domains: ["image.tmdb.org", "secure.gravatar.com"],
     },
     async rewrites() {
         return [
@@ -14,6 +14,18 @@ const nextConfig = {
             {
                 source: "/api/movies/:id",
                 destination: `https://api.themoviedb.org/3/movie/:id?api_key=${API_KEY}&language=ko-KR`,
+            },
+            {
+                source: "/api/reviews/:id",
+                destination: `https://api.themoviedb.org/3/movie/:id/reviews?api_key=${API_KEY}`,
+            },
+            {
+                source: "/api/videos/:id",
+                destination: `https://api.themoviedb.org/3/movie/:id/videos?api_key=${API_KEY}`,
+            },
+            {
+                source: "/api/similar/:id",
+                destination: `https://api.themoviedb.org/3/movie/:id/similar?api_key=${API_KEY}&language=ko-KR`,
             },
         ];
     },
