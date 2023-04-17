@@ -10,8 +10,8 @@ export default function Navbar() {
                 <Link href="/" style={{ textDecoration: "none" }}>
                     <div className={router.pathname === "/" ? "active item" : "item"}>Home</div>
                 </Link>
-                <Link href="/about" style={{ textDecoration: "none" }}>
-                    <div className={router.pathname === "/about" ? "active item" : "item"}>About</div>
+                <Link href="/gacha" style={{ textDecoration: "none" }}>
+                    <div className={router.pathname === "/gacha" ? "active item" : "item"}>Gacha</div>
                 </Link>
             </div>
         </nav>
