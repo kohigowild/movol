@@ -24,7 +24,7 @@ export default function SearchCard() {
 
     return (
         <div className="py-40 px-12 min-h-screen">
-            <Fade duration={1000} direction={"up"}>
+            <Fade duration={2000} direction={"up"}>
                 <div className="mx-auto max-w-2xl py-32 shadow-2xl rounded-lg backdrop-blur-md bg-white/10">
                     <div className="text-center">
                         <h1 className="mb-6 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl md:text-5xl">Movie Finder</h1>

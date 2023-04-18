@@ -34,7 +34,7 @@ export default function Review({ id }: TypeId) {
     }, []);
 
     return (
-        <div className="flex flex-wrap justify-center">
+        <div className="flex flex-wrap justify-center py-8">
             <div className="h-[340px] w-[340px] md:w-[620px] md:h-[450px] lg:w-[820px] lg:h-[540px]">
                 {reviews.map((review) => (
                     <div className="flex w-[340px] md:w-[620px] lg:w-[820px] items-center mb-4">
