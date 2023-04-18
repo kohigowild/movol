@@ -1,0 +1,74 @@
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import { TypeModal } from "@/interface/modal";
+
+export default function ResultModal({ isOpen, closeModal, info }: TypeModal) {
+    const router = useRouter();
+    const handleItemClick = (id: number, title: string) => {
+        router.push({
+            pathname: `/movies/${title}/${id}`,
+        });
+    };
+
+    return (
+        <Transition appear show={isOpen} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
+                    <div className="fixed inset-0 bg-black bg-opacity-25" />
+                </Transition.Child>
+
+                <div className="fixed inset-0 overflow-y-auto">
+                    <div className="flex min-h-full items-center justify-center p-4 text-center">
+                        <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0 scale-95"
+                            enterTo="opacity-100 scale-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100 scale-100"
+                            leaveTo="opacity-0 scale-95"
+                        >
+                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Title as="h3" className="text-lg font-bold leading-6 text-gray-900">
+                                    Search Results
+                                </Dialog.Title>
+                                <div className="mt-2">
+                                    <div className="text-lg mb-2">Click the card to go to the Details page.</div>
+                                    {info?.slice(0, 3).map((movie: any) => (
+                                        <div className="w-full pr-4 mb-4 cursor-pointer" key={movie.id} onClick={() => handleItemClick(movie.id, movie.original_title)}>
+                                            <div className="rounded-lg m-h-64 p-2 transform hover:-translate-y-2 hover:shadow-2xl transition duration-300">
+                                                <figure className="relative h-[100px]">
+                                                    <Image
+                                                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                                        alt={movie.original_title}
+                                                        className="ml-auto mr-auto rounded-t-lg object-cover"
+                                                        fill
+                                                    />
+                                                </figure>
+                                                <div className="rounded-b-lg p-4 flex flex-col">
+                                                    <h5 className="text-black text-xl font-bold leading-none truncate">{movie.original_title}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="mt-4">
+                                    <button
+                                        type="button"
+                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                        onClick={closeModal}
+                                    >
+                                        Got it, thanks!
+                                    </button>
+                                </div>
+                            </Dialog.Panel>
+                        </Transition.Child>
+                    </div>
+                </div>
+            </Dialog>
+        </Transition>
+    );
+}
