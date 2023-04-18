@@ -54,7 +54,6 @@ export default function ResultModal({ isOpen, closeModal, info }: TypeModal) {
                                         </div>
                                     ))}
                                 </div>
-
                                 <div className="mt-4">
                                     <button
                                         type="button"

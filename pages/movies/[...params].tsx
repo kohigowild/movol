@@ -32,7 +32,7 @@ export default function Detail({ params }: any) {
     return (
         <div>
             <Seo title={title} />
-            <div className="flex justify-center py-40">
+            <div className="flex justify-center pt-16">
                 <div className="md:flex flex-wrap justify-center pt-20">
                     <div>
                         <figure className="relative w-[340px] h-[500px] md:w-[300px]">

@@ -36,7 +36,7 @@ export default function Review({ id }: TypeId) {
     return (
         <div className="flex flex-wrap justify-center py-8">
             <div className="h-[340px] w-[340px] md:w-[620px] md:h-[450px] lg:w-[820px] lg:h-[540px]">
-                {reviews.map((review) => (
+                {reviews.slice(0, 5).map((review) => (
                     <div className="flex w-[340px] md:w-[620px] lg:w-[820px] items-center mb-4">
                         <div className="relative w-24 h-24 mr-4">
                             <Image src={review.author_details.avatar_path ? profileHooks(review.author_details.avatar_path) : NullImg} alt={review.author} fill className="rounded-full" />
