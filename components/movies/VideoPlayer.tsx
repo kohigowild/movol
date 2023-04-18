@@ -15,7 +15,7 @@ export default function VideoPlayer({ id }: TypeId) {
     }, []);
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center py-8">
             <YouTube
                 className="h-[340px] w-[340px] md:w-[620px] md:h-[450px] lg:w-[820px] lg:h-[540px]"
                 videoId={video.key}

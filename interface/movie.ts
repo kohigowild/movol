@@ -19,6 +19,11 @@ export interface TypeResult {
     results: TypeMovieList[];
 }
 
+export interface TypeMovie {
+    result: TypeMovieList;
+    setOpenResult: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export interface TypeId {
     id: number;
 }

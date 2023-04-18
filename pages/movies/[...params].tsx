@@ -32,20 +32,20 @@ export default function Detail({ params }: any) {
     return (
         <div>
             <Seo title={title} />
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-16">
                 <div className="md:flex flex-wrap justify-center pt-20">
                     <div>
                         <figure className="relative w-[340px] h-[500px] md:w-[300px]">
                             <Image src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.original_title} className="rounded-lg object-cover" fill />
                         </figure>
                     </div>
-                    <div className="mt-4 w-[340px] md:w-[300px] lg:w-[500px] md:ml-4">
-                        <h2 className="text-xl lg:text-3xl text-gray-900 font-bold mb-4">{title}</h2>
+                    <div className="mt-4 w-[340px] md:w-[300px] lg:w-[500px] md:ml-8">
+                        <h2 className="text-xl lg:text-3xl text-gray-900 font-extrabold mb-4">{title}</h2>
                         <div className="text-xs text-gray-900 mb-4">{movie.tagline}</div>
                         {movie.genres && (
                             <div className="flex">
                                 {movie.genres.map((e: { id: number; name: string }) => (
-                                    <div className="mb-4 mr-2 rounded-md bg-white px-1 py-1 text-xs text-gray-900 bg-indigo-200 shadow-sm">#{e.name}</div>
+                                    <div className="mb-4 mr-2 rounded-md backdrop-blur-md bg-indigo-600/60 shadow px-1 py-1 text-xs text-white">#{e.name}</div>
                                 ))}
                             </div>
                         )}
@@ -57,7 +57,7 @@ export default function Detail({ params }: any) {
             <div className="flex justify-center">
                 <div className="px-2 mt-8">
                     <Tab.Group>
-                        <Tab.List className="flex space-x-1 rounded-xl bg-indigo-200/20 p-1 mb-8">
+                        <Tab.List className="flex space-x-1 rounded-xl backdrop-blur-md bg-white/10 p-1">
                             {categories.map((item) => (
                                 <Tab
                                     key={item.id}
@@ -65,7 +65,7 @@ export default function Detail({ params }: any) {
                                         classNames(
                                             "w-full rounded-lg py-2.5 text-sm leading-5 text-indigo-600 font-bold",
                                             "focus:outline-none",
-                                            selected ? "bg-white shadow" : "text-indigo-400 font-thin hover:text-indigo-600"
+                                            selected ? "backdrop-blur-md bg-white/60 shadow" : "text-indigo-400 font-medium hover:text-indigo-600"
                                         )
                                     }
                                 >

@@ -1,51 +1,48 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import { Fade } from "react-awesome-reveal";
 import Seo from "@/components/@common/Seo";
+import GachaResult from "@/components/gacha/GachaResult";
 
 export default function Gacha() {
-    const router = useRouter();
-    const handleItemClick = (id: number, title: string) => {
-        router.push({
-            pathname: `/movies/${title}/${id}`,
-        });
-    };
-
+    const [openResult, setOpenResult] = useState<boolean>(false);
     const [result, setResult] = useState<any>([]);
     const getRandom = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min);
+
     const fetchGachaMovie = async () => {
         const num = getRandom(1, 300);
+        const randomIndex = getRandom(1, 20);
         const gachaMovie = await (await fetch(`https://movol.vercel.app/api/list/${num}`)).json();
-        setResult(gachaMovie.results);
+        setResult(gachaMovie.results[randomIndex]);
         console.log(result);
     };
 
     useEffect(() => {
         fetchGachaMovie();
-    }, []);
+    }, [openResult]);
 
     return (
         <div>
             <Seo title="About" />
-            <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-                <div className="text-center">
-                    <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Data to enrich your online business</h1>
-                    <p className="mt-6 text-lg leading-8 text-gray-600">
-                        Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
-                    </p>
-                    <div className="mt-10 flex items-center justify-center gap-x-6">
-                        <a
-                            href="#"
-                            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                        >
-                            Get started
-                        </a>
-                        <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-                            Learn more <span aria-hidden="true">→</span>
-                        </a>
+            {!openResult ? (
+                <Fade duration={1000} cascade={true}>
+                    <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                        <div className="text-center">
+                            <h1 className="text-3xl px-12 font-bold tracking-tight text-gray-900 sm:text-5xl">If you're thinking about what movie to watch</h1>
+                            <p className="mt-6 text-xs leading-8 text-gray-900 sm:text-sm">When you click the button, Movol automatically selects the movie.</p>
+                            <div className="mt-6 flex items-center justify-center gap-x-6">
+                                <button
+                                    className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    onClick={() => setOpenResult(true)}
+                                >
+                                    Get started
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </Fade>
+            ) : (
+                <GachaResult result={result} setOpenResult={setOpenResult} />
+            )}
         </div>
     );
 }
