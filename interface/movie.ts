@@ -20,7 +20,6 @@ export interface TypeResult {
 }
 
 export interface TypeMovie {
-    result: TypeMovieList;
     setOpenResult: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
