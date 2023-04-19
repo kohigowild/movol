@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { TypeId, TypeMovieList } from "@/interface/movie";
+import { NoPoster } from "@/utils/hooks";
 
 export default function SimilarList({ id }: TypeId) {
     const router = useRouter();
@@ -26,7 +27,7 @@ export default function SimilarList({ id }: TypeId) {
                 <div className="w-full sm:w-1/2 md:w-1/3 pl-4 pr-4 mb-8 cursor-pointer" key={movie.id} onClick={() => handleItemClick(movie.id, movie.original_title)}>
                     <div className="rounded-lg m-h-64 p-2 transform hover:-translate-y-2 transition duration-300">
                         <figure className="relative h-[240px]">
-                            <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} className="ml-auto mr-auto rounded-t-lg object-cover" fill />
+                            <Image src={NoPoster(movie.poster_path)} alt={movie.original_title} className="ml-auto mr-auto rounded-t-lg object-cover" fill />
                         </figure>
                         <div className="rounded-b-lg p-4 backdrop-blur-md bg-white/30 flex flex-col">
                             <div>

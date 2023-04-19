@@ -36,18 +36,24 @@ export default function Review({ id }: TypeId) {
     return (
         <div className="flex flex-wrap justify-center py-8">
             <div className="h-[340px] w-[340px] md:w-[620px] md:h-[450px] lg:w-[820px] lg:h-[540px]">
-                {reviews.slice(0, 5).map((review) => (
-                    <div className="flex w-[340px] md:w-[620px] lg:w-[820px] items-center mb-4">
-                        <div className="relative w-24 h-24 mr-4">
-                            <Image src={review.author_details.avatar_path ? profileHooks(review.author_details.avatar_path) : NullImg} alt={review.author} fill className="rounded-full" />
-                        </div>
-                        <div className="w-[220px] md:w-[500px] lg:w-[700px]">
-                            <div className="font-semibold text-indigo-600 mb-2">{review.author}</div>
-                            <div className="text-ellipsis break-words line-clamp-2 text-xs mb-2">{review.content}</div>
-                            <div>{review.author_details.rating && <Rating num={review.author_details.rating} />}</div>
-                        </div>
-                    </div>
-                ))}
+                {reviews.length === 0 ? (
+                    <div>There's no review yet.</div>
+                ) : (
+                    <>
+                        {reviews.slice(0, 5).map((review) => (
+                            <div className="flex w-[340px] md:w-[620px] lg:w-[820px] items-center mb-4">
+                                <div className="relative w-24 h-24 mr-4">
+                                    <Image src={review.author_details.avatar_path ? profileHooks(review.author_details.avatar_path) : NullImg} alt={review.author} fill className="rounded-full" />
+                                </div>
+                                <div className="w-[220px] md:w-[500px] lg:w-[700px]">
+                                    <div className="font-semibold text-indigo-600 mb-2">{review.author}</div>
+                                    <div className="text-ellipsis break-words line-clamp-2 text-xs mb-2">{review.content}</div>
+                                    <div>{review.author_details.rating && <Rating num={review.author_details.rating} />}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </>
+                )}
             </div>
         </div>
     );

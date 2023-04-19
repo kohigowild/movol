@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { TypeModal } from "@/interface/modal";
 import { getGenreName } from "@/utils/hooks";
+import { NoPoster } from "@/utils/hooks";
 
 export default function ResultModal({ isOpen, closeModal, info }: TypeModal) {
     const router = useRouter();
@@ -40,12 +41,7 @@ export default function ResultModal({ isOpen, closeModal, info }: TypeModal) {
                                         <div className="w-full pr-4 mb-4 cursor-pointer" key={movie.id} onClick={() => handleItemClick(movie.id, movie.original_title)}>
                                             <div className="flex rounded-lg m-h-64 p-2 transform hover:-translate-y-2 transition duration-300">
                                                 <figure className="relative h-[116px] w-[116px] flex align-center">
-                                                    <Image
-                                                        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                                        alt={movie.original_title}
-                                                        className="ml-auto mr-auto rounded-lg object-cover"
-                                                        fill
-                                                    />
+                                                    <Image src={NoPoster(movie.poster_path)} alt={movie.original_title} className="ml-auto mr-auto rounded-lg object-cover" fill />
                                                 </figure>
                                                 <div className="w-2/3 rounded-b-lg p-4 flex flex-col">
                                                     <h5 className="text-black text-xl font-bold leading-none truncate">{movie.original_title}</h5>
