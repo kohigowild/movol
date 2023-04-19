@@ -10,7 +10,7 @@ export default function Home({ results }: TypeResult) {
     const [genre, setGenre] = useRecoilState(getGenre);
 
     const fetchGenre = async () => {
-        const result = await (await fetch(`http://localhost:3000/api/genre`)).json();
+        const result = await (await fetch(`https://movol.vercel.app/api/genre`)).json();
         setGenre(result.genres);
     };
 
