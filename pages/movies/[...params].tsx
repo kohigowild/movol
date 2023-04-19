@@ -36,7 +36,7 @@ export default function Detail({ params }: any) {
                 <div className="md:flex flex-wrap justify-center pt-20">
                     <div>
                         <figure className="relative w-[340px] h-[500px] md:w-[300px]">
-                            <Image src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.original_title} className="rounded-lg object-cover" fill />
+                            <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} className="rounded-lg object-cover" fill priority />
                         </figure>
                     </div>
                     <div className="mt-4 w-[340px] md:w-[300px] lg:w-[500px] md:ml-8">
@@ -57,7 +57,7 @@ export default function Detail({ params }: any) {
             <div className="flex justify-center">
                 <div className="px-2 mt-8">
                     <Tab.Group>
-                        <Tab.List className="flex space-x-1 rounded-xl backdrop-blur-md bg-white/10 p-1">
+                        <Tab.List className="flex space-x-1 rounded-xl backdrop-blur-md bg-white/30 p-1">
                             {categories.map((item) => (
                                 <Tab
                                     key={item.id}
@@ -65,7 +65,7 @@ export default function Detail({ params }: any) {
                                         classNames(
                                             "w-full rounded-lg py-2.5 text-sm leading-5 text-indigo-600 font-bold",
                                             "focus:outline-none",
-                                            selected ? "backdrop-blur-md bg-white/60 shadow" : "text-indigo-400 font-medium hover:text-indigo-600"
+                                            selected ? "backdrop-blur-md bg-white/70 shadow" : "text-indigo-600 font-medium"
                                         )
                                     }
                                 >

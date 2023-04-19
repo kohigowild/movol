@@ -14,7 +14,7 @@ export default function Navbar() {
     ];
 
     return (
-        <header className="absolute inset-x-0 top-0 z-50">
+        <header className="absolute inset-x-0 top-0 z-10">
             <nav className="flex items-center justify-between sm:justify-center p-6 lg:px-8" aria-label="Global">
                 <div className="flex sm:hidden">
                     <button

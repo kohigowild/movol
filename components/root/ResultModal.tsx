@@ -3,6 +3,7 @@ import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { TypeModal } from "@/interface/modal";
+import { getGenreName } from "@/utils/hooks";
 
 export default function ResultModal({ isOpen, closeModal, info }: TypeModal) {
     const router = useRouter();
@@ -18,7 +19,6 @@ export default function ResultModal({ isOpen, closeModal, info }: TypeModal) {
                 <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
                     <div className="fixed inset-0 bg-black bg-opacity-25" />
                 </Transition.Child>
-
                 <div className="fixed inset-0 overflow-y-auto">
                     <div className="flex min-h-full items-center justify-center p-4 text-center">
                         <Transition.Child
@@ -35,32 +35,42 @@ export default function ResultModal({ isOpen, closeModal, info }: TypeModal) {
                                     Search Results
                                 </Dialog.Title>
                                 <div className="mt-2">
-                                    <div className="text-lg mb-2">Click the card to go to the Details page.</div>
+                                    <div className="text-sm sm:text-lg mb-2">Click the card to go to the Details page.</div>
                                     {info?.slice(0, 3).map((movie: any) => (
                                         <div className="w-full pr-4 mb-4 cursor-pointer" key={movie.id} onClick={() => handleItemClick(movie.id, movie.original_title)}>
-                                            <div className="rounded-lg m-h-64 p-2 transform hover:-translate-y-2 hover:shadow-2xl transition duration-300">
-                                                <figure className="relative h-[100px]">
+                                            <div className="flex rounded-lg m-h-64 p-2 transform hover:-translate-y-2 transition duration-300">
+                                                <figure className="relative h-[116px] w-[116px] flex align-center">
                                                     <Image
                                                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                                         alt={movie.original_title}
-                                                        className="ml-auto mr-auto rounded-t-lg object-cover"
+                                                        className="ml-auto mr-auto rounded-lg object-cover"
                                                         fill
                                                     />
                                                 </figure>
-                                                <div className="rounded-b-lg p-4 flex flex-col">
+                                                <div className="w-2/3 rounded-b-lg p-4 flex flex-col">
                                                     <h5 className="text-black text-xl font-bold leading-none truncate">{movie.original_title}</h5>
+                                                    <div className="text-xs text-black font-light mb-2 mt-2 truncate">{movie.overview}</div>
+                                                    {movie.genre_ids && (
+                                                        <div className="flex">
+                                                            {movie.genre_ids.slice(0, 3).map((e: number) => (
+                                                                <div className="mt-2 mr-2 rounded-md backdrop-blur-md bg-indigo-600/60 shadow px-1 py-1 text-xs text-white truncate" key={e}>
+                                                                    #{getGenreName(e)}
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
-                                <div className="mt-4">
+                                <div className="mt-4 flex justify-end">
                                     <button
                                         type="button"
-                                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                        className="inline-flex justify-center rounded-md border border-transparent bg-indigo-100 px-4 py-2 text-sm font-medium text-indigo-900 hover:bg-indigo-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                                         onClick={closeModal}
                                     >
-                                        Got it, thanks!
+                                        Close
                                     </button>
                                 </div>
                             </Dialog.Panel>

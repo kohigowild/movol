@@ -5,20 +5,6 @@ import GachaResult from "@/components/gacha/GachaResult";
 
 export default function Gacha() {
     const [openResult, setOpenResult] = useState<boolean>(false);
-    const [result, setResult] = useState<any>([]);
-    const getRandom = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min);
-
-    const fetchGachaMovie = async () => {
-        const num = getRandom(1, 300);
-        const randomIndex = getRandom(1, 20);
-        const gachaMovie = await (await fetch(`https://movol.vercel.app/api/list/${num}`)).json();
-        setResult(gachaMovie.results[randomIndex]);
-        console.log(result);
-    };
-
-    useEffect(() => {
-        fetchGachaMovie();
-    }, [openResult]);
 
     return (
         <div>
@@ -41,7 +27,7 @@ export default function Gacha() {
                     </div>
                 </Fade>
             ) : (
-                <GachaResult result={result} setOpenResult={setOpenResult} />
+                <GachaResult />
             )}
         </div>
     );
