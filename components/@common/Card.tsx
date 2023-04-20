@@ -24,8 +24,8 @@ export default function Card({ movie }: any) {
                         <div className="text-xs text-black font-light mb-2 truncate">{movie.overview}</div>
                         <div className="flex">
                             <div className="mr-2 rounded-md backdrop-blur-md bg-indigo-600/60 shadow px-1 py-1 text-xs text-white truncate flex">
-                                <StarIcon className="mr-1 h-3 w-3 mt-[2px] stroke-indigo-600 fill-indigo-600" aria-hidden="true" />
-                                {movie.vote_average}
+                                <StarIcon className="h-3 w-3 mt-[2px] stroke-indigo-600 fill-indigo-600" aria-hidden="true" />
+                                <div className="px-1">{movie.vote_average.toFixed(1)}</div>
                             </div>
                         </div>
                     </div>
