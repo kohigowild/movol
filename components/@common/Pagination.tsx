@@ -22,7 +22,7 @@ export default function Pagination({ page, setPage }: TypePage) {
                 <div
                     key={i}
                     className={i + 1 === page ? `${className} bg-indigo-600/90` : `${className} bg-indigo-600/60 hover:-translate-y-2 transition duration-300`}
-                    onClick={() => handlePageMove(i + 1)}
+                    onClick={() => handlePageMove(i)}
                 >
                     {i + 1}
                 </div>
