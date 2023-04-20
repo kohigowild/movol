@@ -18,9 +18,9 @@ export default function GachaResult() {
     const getRandom = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min);
 
     const fetchGachaMovie = async () => {
-        const num = getRandom(1, 300);
+        const randomPage = getRandom(1, 300);
         const randomIndex = getRandom(1, 20);
-        const gachaMovie = await (await fetch(`https://movol.vercel.app/api/list/${num}`)).json();
+        const gachaMovie = await (await fetch(`https://movol.vercel.app/api/list/${randomPage}`)).json();
         setResult(gachaMovie.results[randomIndex]);
     };
 
