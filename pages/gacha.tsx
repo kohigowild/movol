@@ -8,7 +8,7 @@ export default function Gacha() {
 
     return (
         <div>
-            <Seo title="About" />
+            <Seo title="Gacha" />
             {!openResult ? (
                 <Fade duration={1000} cascade={true}>
                     <div className="py-20 px-12 min-h-screen flex align-center">

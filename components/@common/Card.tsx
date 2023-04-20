@@ -1,7 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { getGenreName, NoPoster } from "@/utils/hooks";
+import { StarIcon } from "@heroicons/react/24/outline";
+import { NoPoster } from "@/utils/hooks";
 
 export default function Card({ movie }: any) {
     const router = useRouter();
@@ -21,15 +22,12 @@ export default function Card({ movie }: any) {
                     <div>
                         <h5 className="text-black mb-2 text-xl font-bold leading-none truncate">{movie.original_title}</h5>
                         <div className="text-xs text-black font-light mb-2 truncate">{movie.overview}</div>
-                        {movie.genre_ids && (
-                            <div className="flex">
-                                {movie.genre_ids.slice(0, 2).map((e: number) => (
-                                    <div className="mr-2 rounded-md backdrop-blur-md bg-indigo-600/60 shadow px-1 py-1 text-xs text-white truncate" key={e}>
-                                        #{getGenreName(e)}
-                                    </div>
-                                ))}
+                        <div className="flex">
+                            <div className="mr-2 rounded-md backdrop-blur-md bg-indigo-600/60 shadow px-1 py-1 text-xs text-white truncate flex">
+                                <StarIcon className="mr-1 h-3 w-3 mt-[2px] stroke-indigo-600 fill-indigo-600" aria-hidden="true" />
+                                {movie.vote_average}
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>

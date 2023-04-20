@@ -11,7 +11,6 @@ export default function Navbar() {
     const navigation = [
         { name: "Home", href: "/" },
         { name: "Popular", href: "/popular" },
-        { name: "New", href: "/new" },
         { name: "Gacha", href: "/gacha" },
     ];
 
@@ -30,7 +29,7 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:flex sm:gap-x-12 justify-center">
                     {navigation.map((item) => (
-                        <Link key={item.name} href={item.href} className="text-sm font-bold rounded-md py-2 px-4 text-gray-700  hover:backdrop-blur-md hover:bg-white/50">
+                        <Link key={item.name} href={item.href} className="text-sm font-bold rounded-md py-2 px-4 text-gray-700 hover:backdrop-blur-md hover:bg-white/50">
                             {item.name}
                         </Link>
                     ))}
