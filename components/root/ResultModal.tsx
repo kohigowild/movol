@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { TypeModal } from "@/interface/modal";
-import { getGenreName } from "@/utils/hooks";
+import { StarIcon } from "@heroicons/react/24/outline";
 import { NoPoster } from "@/utils/hooks";
 
 export default function ResultModal({ isOpen, closeModal, info }: TypeModal) {
@@ -46,15 +46,12 @@ export default function ResultModal({ isOpen, closeModal, info }: TypeModal) {
                                                 <div className="w-2/3 rounded-b-lg p-4 flex flex-col">
                                                     <h5 className="text-black text-xl font-bold leading-none truncate">{movie.original_title}</h5>
                                                     <div className="text-xs text-black font-light mb-2 mt-2 truncate">{movie.overview}</div>
-                                                    {movie.genre_ids && (
-                                                        <div className="flex">
-                                                            {movie.genre_ids.slice(0, 3).map((e: number) => (
-                                                                <div className="mt-2 mr-2 rounded-md backdrop-blur-md bg-indigo-600/60 shadow px-1 py-1 text-xs text-white truncate" key={e}>
-                                                                    #{getGenreName(e)}
-                                                                </div>
-                                                            ))}
+                                                    <div className="flex">
+                                                        <div className="mr-2 rounded-md backdrop-blur-md bg-indigo-600/60 shadow px-1 py-1 text-xs text-white truncate flex">
+                                                            <StarIcon className="mr-1 h-3 w-3 mt-[2px] stroke-indigo-600 fill-indigo-600" aria-hidden="true" />
+                                                            {movie.vote_average}
                                                         </div>
-                                                    )}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

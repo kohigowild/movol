@@ -11,7 +11,6 @@ export default function Navbar() {
     const navigation = [
         { name: "Home", href: "/" },
         { name: "Popular", href: "/popular" },
-        { name: "New", href: "/new" },
         { name: "Gacha", href: "/gacha" },
     ];
 
