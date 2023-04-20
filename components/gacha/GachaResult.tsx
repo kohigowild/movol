@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Fade } from "react-awesome-reveal";
+import { NoPoster } from "@/utils/hooks";
 
 export default function GachaResult() {
     const router = useRouter();
@@ -17,9 +18,9 @@ export default function GachaResult() {
     const getRandom = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min);
 
     const fetchGachaMovie = async () => {
-        const num = getRandom(1, 300);
+        const randomPage = getRandom(1, 300);
         const randomIndex = getRandom(1, 20);
-        const gachaMovie = await (await fetch(`https://movol.vercel.app/api/list/${num}`)).json();
+        const gachaMovie = await (await fetch(`https://movol.vercel.app/api/list/${randomPage}`)).json();
         setResult(gachaMovie.results[randomIndex]);
     };
 
@@ -65,7 +66,7 @@ export default function GachaResult() {
                             </div>
                             <div className="flex mx-auto max-w-2xl shadow-2xl rounded-lg backdrop-blur-md bg-white/10">
                                 <figure className="relative h-[300px] w-1/2">
-                                    <Image src={`https://image.tmdb.org/t/p/w500${result.poster_path}`} alt={result.original_title} className="rounded-l-lg object-cover" fill />
+                                    <Image src={NoPoster(result.poster_path)} alt={result.original_title} className="rounded-l-lg object-cover" fill />
                                 </figure>
                                 <div className="w-1/2 p-4">
                                     <h2 className="text-sm lg:text-3xl text-gray-900 font-extrabold mb-4 text-ellipsis break-words line-clamp-2">{result.original_title}</h2>

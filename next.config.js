@@ -12,6 +12,14 @@ const nextConfig = {
                 destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
             },
             {
+                source: "/api/popular/:page",
+                destination: `https://api.themoviedb.org/3/movie/latest?api_key=${API_KEY}&page=:page`,
+            },
+            {
+                source: "/api/new/:page",
+                destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=:page`,
+            },
+            {
                 source: "/api/movies/:id",
                 destination: `https://api.themoviedb.org/3/movie/:id?api_key=${API_KEY}`,
             },
@@ -32,8 +40,8 @@ const nextConfig = {
                 destination: `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=:keyword`,
             },
             {
-                source: "/api/list/:num",
-                destination: `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=:num`,
+                source: "/api/list/:page",
+                destination: `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=:page`,
             },
             {
                 source: "/api/genre",

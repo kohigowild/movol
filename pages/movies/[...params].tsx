@@ -5,6 +5,7 @@ import Seo from "@/components/@common/Seo";
 import Review from "@/components/movies/Review";
 import SimilarList from "@/components/movies/SimilarList";
 import VideoPlayer from "@/components/movies/VideoPlayer";
+import { NoPoster } from "@/utils/hooks";
 
 function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(" ");
@@ -36,7 +37,7 @@ export default function Detail({ params }: any) {
                 <div className="md:flex flex-wrap justify-center pt-20">
                     <div>
                         <figure className="relative w-[340px] h-[500px] md:w-[300px]">
-                            <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.original_title} className="rounded-lg object-cover" fill priority />
+                            <Image src={NoPoster(movie.poster_path)} alt={movie.original_title} className="rounded-lg object-cover" fill priority />
                         </figure>
                     </div>
                     <div className="mt-4 w-[340px] md:w-[300px] lg:w-[500px] md:ml-8">
