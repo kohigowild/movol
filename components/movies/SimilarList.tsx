@@ -24,7 +24,7 @@ export default function SimilarList({ id }: TypeId) {
 
     return (
         <div className="w-[340px] md:w-[620px] lg:w-[820px] mx-auto flex flex-wrap items-start py-8">
-            {similar.slice(0, 6).map((movie) => (
+            {similar.slice(0, 8).map((movie) => (
                 <Card movie={movie} />
             ))}
         </div>
